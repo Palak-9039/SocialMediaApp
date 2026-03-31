@@ -2,6 +2,7 @@ package com.example.finalproject.Util
 
 import android.content.Context
 import android.util.Log
+import com.example.finalproject.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,8 +17,7 @@ class NotificationHelper {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val json = JSONObject().apply {
-                    put("app_id", "f63b86c5-27be-4584-bc86-08255699eb18") // Your OneSignal App ID
-                    put("include_player_ids", JSONArray().put(playerId)) // Target user
+                    put("app_id", BuildConfig.ONESIGNAL_APP_ID)
                     put("headings", JSONObject().put("en", title)) // Notification title
                     put("contents", JSONObject().put("en", message)) // Notification message
                 }
@@ -27,7 +27,7 @@ class NotificationHelper {
                 connection.requestMethod = "POST"
                 connection.doOutput = true
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
-                connection.setRequestProperty("Authorization", "Basic os_v2_app_6y5ynrjhxzcyjpegbasvngplddweea2lgcvu5qfz5fycprecyqcegglyjemxalv7z3pxvjpkrrxvp6mxzifijemxisof5jlqk2lj3oq") // Replace with your REST API key
+                connection.setRequestProperty("Authorization", "Basic ${BuildConfig.ONESIGNAL_REST_API_KEY}")
 
                 // Send JSON data
                 DataOutputStream(connection.outputStream).use { it.writeBytes(json.toString()) }

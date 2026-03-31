@@ -35,6 +35,8 @@ android {
         buildConfigField("String", "CLOUDINARY_API_SECRET", "\"${properties.getProperty("CLOUDINARY_API_SECRET")}\"")
         buildConfigField("String", "CLOUDINARY_CLOUD_NAME", "\"${properties.getProperty("CLOUDINARY_CLOUD_NAME")}\"")
         buildConfigField("String", "CLOUDINARY_UPLOAD_PRESET", "\"${properties.getProperty("CLOUDINARY_UPLOAD_PRESET")}\"")
+        buildConfigField("String", "ONESIGNAL_APP_ID", "\"${properties.getProperty("ONESIGNAL_APP_ID")}\"")
+        buildConfigField("String", "ONESIGNAL_REST_API_KEY", "\"${properties.getProperty("ONESIGNAL_REST_API_KEY")}\"")
     }
     buildTypes {
         release {
